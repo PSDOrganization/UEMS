@@ -12,16 +12,8 @@ class Test_php{
         return $num1;
         }
     }
-    //Function to search for the particular product from the database
-    public function products($con, $user) {
-        $result=mysqli_query($con,$user);
-        $num1=1;
-        if(mysqli_num_rows($result)==1)
-        {
-        return $num1;
-        }
-    }
-    //Function to add products to the database
+
+    //Function to add new user to the database
     public function addproduct($con) {
         $sql="INSERT INTO admin (firstname, lastname, employeeid, emailid, securityquestion1, securityquestion2, securityquestion3, pass1, pass2) VALUES ('sai', 'goutham', 'SLU123467', 'sai@gmail.com', 'some', 'some', 'some', 'sai1234', 'sai1234')";
         $result=mysqli_query($con,$sql);
@@ -31,19 +23,9 @@ class Test_php{
         return $num1;
         }
     }
-    // Function to empty the products in the cart
-    public function emptycart($con) {
-        $user="DELETE from cart_details";
-        $result=mysqli_query($con,$user);
-        $num1=1;
-        if($result)
-        {
-        return $num1;
-        }
-    }
-    //Function to update the product details
+    //Function to update the password 
     public function update($con) {
-        $user="UPDATE product_details SET pname='Product-2', price='$6', category='Category-2' where id='1'";
+        $user="UPDATE admin SET pass1='Mounika@12x', pass2='Mounika@12x' where employeeid='SLU1111100'";
         $result=mysqli_query($con,$user);
         $num1=1;
         if($result)
@@ -51,13 +33,5 @@ class Test_php{
         return $num1;
         }
     }
-    //Function to authenticate user
-    public function userLogin($con,$user) {
-        $result=mysqli_query($con,$user);
-        $num1=1;
-        if(mysqli_num_rows($result)==1)
-        {
-        return $num1;
-        }
     }
 }
