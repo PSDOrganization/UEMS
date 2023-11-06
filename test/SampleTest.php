@@ -14,18 +14,18 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $this->assertEquals(1, $result);
     }
     //Function to test add products features
-    public function testcase3(){
+    public function testcase2(){
         $cal=new App\Test_php;
         $host = "localhost";
         $usern = "root";
         $pass = "";
         $dbname = "uems";
         $con = mysqli_connect($host, $usern, $pass, $dbname);
-        $result=$cal->addproduct($con);
+        $result=$cal->addadmin($con);
         $this->assertEquals(1, $result);
     }
     //Function to test to update password
-    public function testcase5(){
+    public function testcase3(){
         $cal=new App\Test_php;
         $host = "localhost";
         $usern = "root";
@@ -36,15 +36,15 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $this->assertEquals(1, $result);
     }
     //Function to test whether employee ID is present in the admin table 
-    public function testcase2(){
+    public function testcase4(){
         $cal=new App\Test_php;
         $host = "localhost";
         $usern = "root";
         $pass = "";
         $dbname = "uems";
         $con = mysqli_connect($host, $usern, $pass, $dbname);
-        $user="SELECT * from admin where employeeid='SLU1111101'";
-        $result=$cal->products($con,$user);
+        $user="SELECT * from admin where employeeid='SLU1234567'";
+        $result=$cal->search($con,$user);
         $this->assertEquals(1, $result);
     }
 }
