@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   build_and_push:
     docker:
@@ -19,11 +20,12 @@ jobs:
       - run:
         name: Authenticate with Docker Hub
         command: |
-          echo "Gundubodi@123" | docker login --username mounikabireddy --password-stdin
+          echo "gundubodi" | docker login --username mounikabireddy --password-stdin
       - run:
         name: Push Docker Image to Docker Hub
         command: |
           docker push mounikabireddy/my-python-app-python:${CIRCLE_SHA1}
+
 workflows:
   version: 2
   build_and_deploy:
