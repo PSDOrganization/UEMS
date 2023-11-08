@@ -13,7 +13,7 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $result=$cal->validate($con,$user);
         $this->assertEquals(1, $result);
     }
-    //Function to test add products features
+    //Function to test add details
     public function testcase2(){
         $cal=new App\Test_php;
         $host = "localhost";
