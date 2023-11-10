@@ -4,20 +4,29 @@ jobs:
   build:
     docker:
       - image: circleci/node:16
- 
+
     steps:
       - checkout
 
-      # Install PHP and Composer locally
+      # Install PHP and required extensions
       - run:
-          name: Install PHP and Composer
+          name: Install PHP and extensions
           command: |
             sudo apt-get update
-            sudo apt-get install -y php
+            sudo apt-get install -y php php-xml php-dom
+
+      # Install Composer
+      - run:
+          name: Install Composer
+          command: |
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
             echo 'export PATH="$PATH:/home/circleci/project"' >> $BASH_ENV
             source $BASH_ENV
-            php /home/circleci/project/composer.phar install
+
+      # Run Composer install
+      - run:
+          name: Run Composer install
+          command: php /home/circleci/project/composer.phar install
 
       # Run PHP tests
       - run:
