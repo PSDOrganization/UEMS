@@ -29,7 +29,7 @@ if (!$result) {
     <!-- Add Bootstrap CSS link here -->
 </head>
 <body>
-    <!-- Start Header/Navigation -->
+    <!------ Start Header/Navigation -->
     <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="uems navigation bar">
         <div class="container">
             <a class="navbar-brand" href="index.html">UniVibe<span>.</span></a>
