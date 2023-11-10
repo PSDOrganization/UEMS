@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Install Composer and dependencies
           command: |
+            mkdir -p ~/.composer
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             composer install
 
