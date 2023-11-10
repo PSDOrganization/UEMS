@@ -1,5 +1,5 @@
 version: 2.1
- 
+
 jobs:
   build:
     docker:
@@ -7,7 +7,7 @@ jobs:
  
     steps:
       - checkout
- 
+
       # Install Node.js dependencies
       - run:
           name: Install Node.js dependencies
@@ -33,47 +33,7 @@ jobs:
       - run:
           name: Run PHP tests
           command: phpunit test
- 
-workflows:
-  version: 2
-  test:
-    jobs:
-      - build
-version: 2.1
- 
-jobs:
-  build:
-    docker:
-      - image: circleci/node:16
- 
-    steps:
-      - checkout
- 
-      # Install Node.js dependencies
-      - run:
-          name: Install Node.js dependencies
-          command: npm install
- 
-      # Run Node.js tests
-      - run:
-          name: Run Node.js tests
-          command: npm test
- 
-      # Install PHP dependencies
-      - run:
-          name: Install PHP dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y php
-            curl -sS https://getcomposer.org/installer | php
-            mv composer.phar /usr/local/bin/composer
-            composer install
- 
-      # Run PHP tests
-      - run:
-          name: Run PHP tests
-          command: phpunit test
- 
+
 workflows:
   version: 2
   test:
