@@ -6,7 +6,7 @@ jobs:
       - image: circleci/php:7.4-cli
         environment:
           PHP_VERSION: 7.4
-          XDEBUG_MODE: coverage
+          COMPOSER_HOME: /home/circleci
 
     steps:
       - checkout
@@ -15,9 +15,9 @@ jobs:
       - run:
           name: Install Composer and dependencies
           command: |
-            mkdir -p ~/.composer
-            curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-            composer install
+            mkdir -p /home/circleci/.composer
+            curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci --filename=composer
+            /home/circleci/composer install
 
       # Run PHPUnit tests
       - run:
