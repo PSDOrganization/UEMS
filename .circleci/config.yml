@@ -14,7 +14,11 @@ jobs:
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
             cd /home/circleci/project
             php composer.phar install
- 
+            
+      - run:
+          name: Check PHP configuration
+          command: php -i | grep mysqli
+          
       - run:
           name: Make PHPUnit executable
           command: |
