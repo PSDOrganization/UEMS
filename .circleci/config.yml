@@ -26,13 +26,14 @@ jobs:
             sudo apt-get install -y php
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
             echo 'export PATH="$PATH:/home/circleci/project"' >> $BASH_ENV
+            echo 'export PATH="$PATH:/home/circleci/project/vendor/bin"' >> $BASH_ENV
             source $BASH_ENV
             composer install
  
       # Run PHP tests
       - run:
           name: Run PHP tests
-          command: php -v
+          command: composer -v
 
 workflows:
   version: 2
