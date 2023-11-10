@@ -1,38 +1,30 @@
 version: 2.1
 
 jobs:
-  setup-test:
-    machine:
-      image: ubuntu-2204:2022.07.1
+  build:
+    docker:
+      - image: circleci/php:7.4-cli
+        environment:
+          PHP_VERSION: 7.4
+          XDEBUG_MODE: coverage
 
     steps:
       - checkout
 
-      # Create the directory if it doesn't exist
+      # Install Composer and dependencies
       - run:
-          name: Create directory
-          command: mkdir -p /home/circleci/project
-
-      # Install Composer
-      - run:
-          name: Install Composer
+          name: Install Composer and dependencies
           command: |
-            curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
-            echo 'export PATH="$PATH:/home/circleci/project"' >> $BASH_ENV
-            source $BASH_ENV
+            curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            composer install
 
-      # Run Composer install
+      # Run PHPUnit tests
       - run:
-          name: Run Composer install
-          command: php /home/circleci/project/composer.phar install
-
-      # Run PHP tests
-      - run:
-          name: Run PHP tests
-          command: composer -v
+          name: Run PHPUnit tests
+          command: ./vendor/bin/phpunit
 
 workflows:
   version: 2
   test:
     jobs:
-      - setup-test
+      - build
