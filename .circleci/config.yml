@@ -16,6 +16,11 @@ jobs:
             php composer.phar install
  
       - run:
+          name: Make PHPUnit executable
+          command: |
+            chmod +x ./vendor/bin/phpunit
+ 
+      - run:
           name: Run PHPUnit tests
           command: |
             ./vendor/bin/phpunit
