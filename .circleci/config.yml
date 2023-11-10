@@ -14,10 +14,6 @@ jobs:
             curl -sS https://getcomposer.org/installer | php
             mv composer.phar /usr/local/bin/composer
             composer install
- 
-      - run:
-          name: Run PHPUnit tests
-          command: |
             ./vendor/bin/phpunit
  
 workflows:
