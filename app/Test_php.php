@@ -42,4 +42,11 @@ class Test_php{
         return $num1;
         }
     }
+     // Function to check if a table exists in the database
+    public function tableExists($con, $tableName)
+    {
+        $sql = "SHOW TABLES LIKE 'event'";
+        $result = mysqli_query($con, $sql);
+        return mysqli_num_rows($result) == 1;
+    }
 }
