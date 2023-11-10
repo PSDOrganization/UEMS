@@ -69,6 +69,45 @@ describe('HTML Content Test', () => {
   });
 });
 
+describe('HTML Blockquote Test', () => {
+  let dom;
+  let container;
 
+  beforeEach(() => {
+    // Create a new JSDOM environment
+    dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 
+    // Set the global "document" object to the JSDOM document
+    global.document = dom.window.document;
+
+    // Create a div element to hold the HTML content for testing
+    container = document.createElement('div');
+    container.innerHTML = `
+      <blockquote class="mb-5">
+        <p>&ldquo;<b>Escape rooms</b> is the event conducted by the Student Association Center, this is a famous event among graduate and under-grad students of the college. The entry is free to the college students, Register for the event now.&rdquo;</p>
+      </blockquote>
+    `;
+  });
+
+  afterEach(() => {
+    // Clean up the container after each test
+    container = null;
+  });
+
+  it('should have the correct text and structure', () => {
+    const blockquote = container.querySelector('blockquote');
+    expect(blockquote).toBeDefined();
+  
+    const paragraph = blockquote.querySelector('p');
+    expect(paragraph).toBeDefined();
+    expect(paragraph.innerHTML).toContain('“<b>Escape rooms</b> is the event conducted by the Student Association Center, this is a famous event among graduate and under-grad students of the college. The entry is free to the college students, Register for the event now.”');
+  });
+  
+
+  it('should contain a <b> element for "Escape rooms"', () => {
+    const boldElement = container.querySelector('b');
+    expect(boldElement).toBeDefined();
+    expect(boldElement.textContent).toBe('Escape rooms');
+  });
+});
 
