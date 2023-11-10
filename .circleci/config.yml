@@ -1,42 +1,27 @@
 version: 2.1
 
-# Define the jobs we want to run for this project
 jobs:
-  build_and_push:
+  build:
     docker:
-      - image: cimg/python:3.8
+      - image: circleci/php:7.4
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
       - run:
-          name: Build Docker Image
+          name: Install dependencies
           command: |
-            DOCKER_TAG="$DOCKERHUB_USERNAME/dockerfile:${CIRCLE_SHA1}"
-            docker build -t $DOCKER_TAG .
+            sudo apt-get update
+            sudo apt-get install -y unzip
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+            composer install
+ 
       - run:
-          name: Authenticate with Docker Hub
+          name: Run PHPUnit tests
           command: |
-            echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - run:
-          name: Push Docker Image to Docker Hub
-          command: |
-            DOCKER_TAG="$DOCKERHUB_USERNAME/dockerfile:${CIRCLE_SHA1}"
-            docker push $DOCKER_TAG
-
-  test:
-    docker:
-      - image: cimg/base:2023.03
-    steps:
-      - checkout
-      - run: echo "this is the test job"
-
-# Orchestrate our job run sequence
+            ./vendor/bin/phpunit
+ 
 workflows:
   version: 2
-  build_and_deploy:
+  build:
     jobs:
-      - build_and_push:
-        filters:
-          branches:
-            only: Dockersetup
+      - build
