@@ -24,7 +24,7 @@ jobs:
       - run:
           name: "Run Pytest"
           command: "python3 -m pytest"
-
+          command: "pip install --upgrade pip"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
