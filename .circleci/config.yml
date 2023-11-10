@@ -8,6 +8,11 @@ jobs:
     steps:
       - checkout
 
+      # Create the directory if it doesn't exist
+      - run:
+          name: Create directory
+          command: mkdir -p /home/circleci/project
+
       # Install Composer
       - run:
           name: Install Composer
