@@ -8,19 +8,33 @@ jobs:
     steps:
       - checkout
  
-      # Install dependencies
+      # Install Node.js dependencies
       - run:
           name: Install Node.js dependencies
           command: npm install
  
-      # Run tests
+      # Run Node.js tests
       - run:
-          name: Run tests
+          name: Run Node.js tests
           command: npm test
+ 
+      # Install PHP dependencies
+      - run:
+          name: Install PHP dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y php
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+            composer install
+ 
+      # Run PHP tests
+      - run:
+          name: Run PHP tests
+          command: phpunit test
  
 workflows:
   version: 2
   test:
     jobs:
       - build
- 
