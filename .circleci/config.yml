@@ -8,10 +8,12 @@ jobs:
     steps:
       - checkout
 
+      # Install dependencies
       - run:
-          name: Install dependencies
+          name: Install Node.js dependencies
           command: npm install
 
+      # Run tests
       - run:
           name: Run tests
           command: npm test
@@ -24,4 +26,4 @@ workflows:
           filters:
             branches:
               ignore:
-                - /^.*$/
+                - /.*/
