@@ -6,7 +6,7 @@
   
   "scripts": {
     
-    "test": "jasmine --experimental-modules --random=true spec/mymodule.spec.js"
+    "test": "jasmine spec/mymodule.spec.js"
   },
   "author": "",
   "license": "ISC",
