@@ -3,13 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:8.x-cli
+      - image: circleci/php:8.0-cli
         environment:
           COMPOSER_HOME: /home/circleci
 
     steps:
       - checkout
-      
+
+      # Install Composer and dependencies
       - run:
           name: Install Composer and dependencies
           command: |
@@ -17,6 +18,7 @@ jobs:
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci --filename=composer
             /home/circleci/composer install
 
+      # Run PHPUnit tests
       - run:
           name: Run PHPUnit tests
           command: ./vendor/bin/phpunit
