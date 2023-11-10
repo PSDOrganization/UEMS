@@ -20,14 +20,9 @@ jobs:
  
       # Install PHP and Composer locally
       - run:
-          name: Install PHP and Composer
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y php
-            curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
-            echo 'export PATH="$PATH:/home/circleci/project"' >> $BASH_ENV
-            source $BASH_ENV
-            composer install
+          name: Install PHP dependencies
+          command: php /home/circleci/project/composer.phar install
+
  
       # Run PHP tests
       - run:
