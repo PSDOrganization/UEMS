@@ -21,7 +21,7 @@ jobs:
       # Install PHP and Composer locally
       - run:
           name: Install PHP dependencies
-          command: php /home/circleci/project/composer.phar install
+          command: php -v
 
  
       # Run PHP tests
