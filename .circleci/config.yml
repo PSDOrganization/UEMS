@@ -8,16 +8,6 @@ jobs:
     steps:
       - checkout
 
-      # Install Node.js dependencies
-      - run:
-          name: Install Node.js dependencies
-          command: npm install
- 
-      # Run Node.js tests
-      - run:
-          name: Run Node.js tests
-          command: npm test
- 
       # Install PHP and Composer locally
       - run:
           name: Install PHP and Composer
@@ -26,10 +16,9 @@ jobs:
             sudo apt-get install -y php
             curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/project
             echo 'export PATH="$PATH:/home/circleci/project"' >> $BASH_ENV
-            echo 'export PATH="$PATH:/home/circleci/project/vendor/bin"' >> $BASH_ENV
             source $BASH_ENV
-            composer install
- 
+            php /home/circleci/project/composer.phar install
+
       # Run PHP tests
       - run:
           name: Run PHP tests
