@@ -55,7 +55,7 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $pass = "";
         $dbname = "uems";
         $con = mysqli_connect($host, $usern, $pass, $dbname);
-        
+       
         $tableName = 'event';
     
         $result = $cal->tableExists($con, $tableName);
