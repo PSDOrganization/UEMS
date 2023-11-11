@@ -47,7 +47,6 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $result=$cal->search($con,$user);
         $this->assertEquals(1, $result);
     }
-    
      public function testTableExists()
     {
         $cal = new App\Test_php;
@@ -56,6 +55,7 @@ class SampleTest extends \PHPUnit\Framework\TestCase{
         $pass = "";
         $dbname = "uems";
         $con = mysqli_connect($host, $usern, $pass, $dbname);
+        
         $tableName = 'event';
     
         $result = $cal->tableExists($con, $tableName);
