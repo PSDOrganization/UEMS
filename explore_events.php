@@ -13,19 +13,19 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="css/tiny-slider.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/adminstyle.css">
 		<title>University Event Mangement System</title>
 
 	<style>
 		Table, th, td{
-			margin-left: 300px;
+			margin-left: 27%;
 			border: 3px solid darkgreen;
 			width: 600px;
 			height: 50px;
 			border-collapse: collapse;
-
 		}
 		h1{
-			margin-left: 500px;
+			text-align: center;
 		}
 		.register-button {
     		color: white;
@@ -66,7 +66,7 @@
                 <li >
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
-                <li><a class="nav-link" href="login.html">Admin Login</a></li>
+                <li><a class="nav-link" href="admin.html">Admin Dashboard</a></li>
         
                 <li class="nav-item active"><a class="nav-link" href="explore_events.php">Explore events</a></li>
                 <li><a class="nav-link" href="Student_login.html">Student Login</a></li>
@@ -85,12 +85,13 @@
 
     <table>
         <tr>
-			<th style="width: 20%;"> <b>Event ID </b></th>
-            <th style="width: 20%;"> <b>Event Name </b></th>
-            <th style="width: 15%;"> <b>No. of Participants</th>
-            <th style="width: 20%;">Event Time</th>
-            <th style="width: 20%;">Event Date</th>
-            <th style="width: 35%;">Venue</th>
+			<th style="width:auto;"> <b>Event ID </b></th>
+            <th style="width:auto;"> <b>Event Name </b></th>
+            <th style="width:auto;"> <b>No. of Participants</th>
+			<th style="width:auto;"> <b>Event Description</th>
+            <th style="width:auto;">Event Time</th>
+            <th style="width:auto;">Event Date</th>
+            <th style="width:auto;">Venue</th>
 		
         </tr>
 
@@ -102,7 +103,7 @@
         }
 
         // Execute the SQL query
-        $query = "SELECT eventid, eventname, noofparticipants, event_time, event_date, venue FROM event";
+        $query = "SELECT eventid, eventname, noofparticipants, eventdescription, event_time, event_date, venue FROM event";
         $result = mysqli_query($con, $query);
 
         if (!$result) {
@@ -115,6 +116,7 @@
 			echo "<td style='color: black; font-weight: bold;'>" . $row['eventid'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['eventname'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['noofparticipants'] . "</td>";
+			echo "<td style='color: black; font-weight: bold;'>" . $row['eventdescription'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['event_time'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['event_date'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['venue'] . "</td>";
@@ -126,66 +128,11 @@
         mysqli_close($con);
         ?>
     </table>
-
-		<!-- Start Upcoming Events Section -->
-		<div class="upevents-section">
-			<div class="container">
-				<div class="row">
-
-					<!-- Start Column 1 -->
-					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-						<h2 class="mb-4 section-title"><b> UPCOMING EVENTS!!</b> </h2>
-						<p class="mb-4">Join the exciting events happening in the Campus. View and register for mutiple events now.</p>
-						<p><a href="index.html" class="btn">Register Now</a></p>
-					</div> 
-					<!-- End Column 1 -->
-
-					<!-- Start Column 2 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="upevents-item" href="index.html">
-							<img src="images/pic_1.png" class="img-fluid upevents-thumbnail">
-							<h3 class="upevents-title">Student Wellness</h3>
-							<strong class="upevents-price">No Entry Fee</strong>
-
-							<span class="icon-cross">
-								<img src="images/plus.png" class="img-fluid">
-							</span>
-						</a>
-					</div> 
-					<!-- End Column 2 -->
-
-					<!-- Start Column 3 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="upevents-item" href="index.html">
-							<img src="images/pic2.jpg" class="img-fluid upevents-thumbnail">
-							<h3 class="upevents-title">Paint Event</h3>
-							<strong class="upevents-price">$10.00</strong>
-
-							<span class="icon-cross">
-								<img src="images/plus.png" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 3 -->
-
-					<!-- Start Column 4 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="upevents-item" href="index.html">
-							<img src="images/pic5 - instasize.webp" class="img-fluid upevents-thumbnail">
-							<h3 class="upevents-title">BasketBall Tournamnet</h3>
-							<strong class="upevents-price">No Entry Fee</strong>
-
-							<span class="icon-cross">
-								<img src="images/plus.png" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 4 -->
-
-				</div>
-			</div>
-		</div>
-		<!-- End Upcoming Events Section -->
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+		
 <!-- Start Footer Section -->
 <footer class="footer-section">
 			<div class="container relative">

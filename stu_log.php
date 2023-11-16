@@ -20,7 +20,9 @@ $query="SELECT  emailid,pass1 FROM student WHERE emailid='$emailid' and pass1='$
 	if($count>0)
 	{
 		echo "Login successful";
+		exit(header("refresh:1;url=events_display.php"));
 	}
 	else
 		echo "Invalid login";
+		exit(header("refresh:1;url=Student_login.html"));
 ?>

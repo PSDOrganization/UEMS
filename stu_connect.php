@@ -40,18 +40,20 @@ $pass1 = $_POST['pass1'];
 $pass2 = $_POST['pass2'];
  
 
+
+/*$sql =  "INSERT INTO student(firstname,lastname,bannerid,emailid,securityquestion1,securityquestion2,securityquestion3,pass1,pass2)VALUES('$firstname','$lastname','$bannerid','$emailid','$secques1','$secques2','$secques3','$pass1','$pass2')";*/
 $sql = "INSERT INTO student (firstname, lastname, bannerid, emailid, securityquestion1, securityquestion2, securityquestion3, pass1, pass2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("sssssssss", $firstname, $lastname, $bannerid, $emailid, $secques1, $secques2, $secques3, $pass1, $pass2);
 
 if ($stmt->execute()) {
     // Registration successful, redirect to signup.html with a success message
-    header("Location: signup.html?success=Registration%20is%20successful");
+    header("Location: Student_login.html?success=Registration%20is%20successful");
 } else {
     // Registration failed, redirect to signup.html with an error message
     header("Location: signup.html?error=Registration%20failed");
 }
- 
+
 ?>
     
     

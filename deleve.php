@@ -102,6 +102,7 @@ class EventManager implements EventManagerDecorator
 
         if ($result) {
             echo "Event deleted successfully";
+            exit(header("refresh:1;url=admin.html"));
         } else {
             die("Error deleting event: " . mysqli_error($this->db->connection));
         }

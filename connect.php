@@ -46,7 +46,7 @@ $stmt->bind_param("sssssssss", $firstname, $lastname, $employeeid, $emailid, $se
 
 if ($stmt->execute()) {
     // Registration successful, redirect to signup.html with a success message
-    header("Location: signup.html?success=Registration%20is%20successful");
+    header("Location: login.html?success=Registration%20is%20successful");
 } else {
     // Registration failed, redirect to signup.html with an error message
     header("Location: signup.html?error=Registration%20failed");
