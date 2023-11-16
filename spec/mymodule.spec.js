@@ -111,3 +111,29 @@ describe('HTML Blockquote Test', () => {
   });
 });
 
+describe('Login page', function () {
+  let container;
+
+  beforeEach(() => {
+    const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+    global.document = dom.window.document;
+
+    container = document.createElement('div');
+    container.innerHTML = '<p class="mt-3 text-center">Already have an account? <a href="login.html">Log in</a></p>';
+  });
+
+  afterEach(() => {
+    container = null;
+  });
+
+  it('should have a login link with the correct href', function () {
+    document.body.appendChild(container);
+
+    var loginLink = document.querySelector('a');
+
+    expect(loginLink).toBeTruthy();
+    expect(loginLink.getAttribute('href')).toBe('login.html');
+
+    document.body.removeChild(container);
+  });
+});
