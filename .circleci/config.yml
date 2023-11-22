@@ -17,6 +17,18 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+
+      # Start Docker daemon
+      - setup_remote_docker:
+          version: 19.03.13
+
+      # Build Docker image upon successful tests
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t $DOCKERHUB_USERNAME/UEMS-image:latest .
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD 
+            docker push $DOCKERHUB_USERNAME/UEMS-image:latest
  
 workflows:
   version: 2
