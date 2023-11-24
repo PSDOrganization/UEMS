@@ -136,4 +136,76 @@ describe('Login page', function () {
 
     document.body.removeChild(container);
   });
+
+
+
 });
+describe('Sign Up Page', function () {
+  let container;
+
+  beforeEach(() => {
+    // Set up a basic HTML structure
+    const dom = new JSDOM('<!DOCTYPE html><html lang="en"><body></body></html>');
+    global.document = dom.window.document;
+
+    // Create a container element with sample content
+    container = document.createElement('div');
+    container.innerHTML = '<p class="mt-3 text-center">Already have an account? <a href="Student_login.html">Log in</a></p>';
+  });
+
+  afterEach(() => {
+    // Clean up after each test
+    container = null;
+  });
+
+  it('should have a login link with the correct href', function () {
+    // Arrange: Append the container to the body
+    document.body.appendChild(container);
+
+    // Act: Find the login link element
+    var loginLink = document.querySelector('a');
+
+    // Assert: Check if the login link exists and has the correct href
+    expect(loginLink).toBeTruthy();
+    expect(loginLink.getAttribute('href')).toBe('Student_login.html');
+
+    // Clean up: Remove the container from the body
+    document.body.removeChild(container);
+  });
+});
+
+describe('Sign Up Page', function () {
+  let container;
+
+  beforeEach(() => {
+    // Set up a basic HTML structure
+    const dom = new JSDOM('<!DOCTYPE html><html lang="en"><body></body></html>');
+    global.document = dom.window.document;
+
+    // Create a container element with sample content
+    container = document.createElement('div');
+    container.innerHTML = '<div class="form-group"><label for="password">Create Password</label><input type="password" class="form-control" id="password" placeholder="Create a password" name="pass1" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$" title="Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character." required></div>';
+  });
+
+  afterEach(() => {
+    // Clean up after each test
+    container = null;
+  });
+
+  it('should have a password input field with the correct pattern and title attributes', function () {
+    // Arrange: Append the container to the body
+    document.body.appendChild(container);
+
+    // Act: Find the password input element
+    var passwordInput = document.getElementById('password');
+
+    // Assert: Check if the password input exists and has the correct pattern and title attributes
+    expect(passwordInput).toBeTruthy();
+    expect(passwordInput.getAttribute('pattern')).toBe('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$');
+    expect(passwordInput.getAttribute('title')).toBe('Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+
+    // Clean up: Remove the container from the body
+    document.body.removeChild(container);
+  });
+});
+
