@@ -34,18 +34,18 @@
       <!-- Start Header/Navigation -->
 		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="uems navigation bar">
 			<div class="container">
-				<a class="navbar-brand" href="index.php">UniVibe<span>.</span></a>
+				<a class="navbar-brand" href="index.html">UniVibe<span>.</span></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsuems" aria-controls="navbarsuems" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarsuems">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item ">
-							<a class="nav-link" href="index.php">Home</a>
+							<a class="nav-link" href="index.html">Home</a>
 						</li>				
-						<li><a class="nav-link" href="about.php">About us</a></li>			
-						<li class="active"><a class="nav-link" href="login.php">Signup Page</a></li>
-						<li><a class="nav-link" href="contact.php">Contact us</a></li>
+						<li><a class="nav-link" href="about.html">About us</a></li>			
+						<li class="active"><a class="nav-link" href="login.html">Signup Page</a></li>
+						<li><a class="nav-link" href="contact.html">Contact us</a></li>
 					</ul>				
 				</div>
                 
@@ -54,13 +54,13 @@
 		<!-- End Header/Navigation -->
 
 
-	
+
 
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 signup-container">
                 <h2 class="text-center mb-4">Sign Up</h2>
-                <form action="connect.php" method="post">
+                <form action="connect.php" method="post" onsubmit="return checkPasswordMatch()">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name</label>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label for="employeeID">Employee ID</label>
-                        <input type="text" class="form-control" id="employeeID" placeholder="Enter your employee ID" pattern="^SLU.{7}$" title="Please enter a code that starts with 'SLU' and has 7 characters." name="employeeid" required>
+                        <input type="text" class="form-control" id="employeeID" placeholder="Enter your employee ID" pattern="^SLU.{7}$" title="Please enter a code that starts with 'SLU' and has 7 characters." name="employeeid" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email ID</label>
@@ -81,37 +81,35 @@
                     </div>
 					<div class="form-group">
                         <label for="Secuirty Question 1">Secuity Question 1: What is your nickname?</label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter a nick name" name="securityquestion1" required>
+                        <input type="text" class="form-control" id="securityquestion1" placeholder="Enter a nick name" name="securityquestion1" required>
                     </div>
 					<div class="form-group">
                         <label for="Secuirty Question 1">Secuity Question 2: What is your favourite City?</label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter a city" name="securityquestion2" required>
+                        <input type="text" class="form-control" id="securityquestion2" placeholder="Enter a city" name="securityquestion2" required>
                     </div>
 					<div class="form-group">
                         <label for="Secuirty Question 1">Secuity Question 3: What is your favourite Colour?</label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter a colur" name="securityquestion3" required>
+                        <input type="text" class="form-control" id="securityquestion3" placeholder="Enter a colur" name="securityquestion3" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Create Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Create a password" name="pass1" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required title="Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character."required>
+                        <input type="password" class="form-control" id="password" placeholder="Create a password" name="pass1" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character." required>
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="pass2" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required title="Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character." required>
-                        
-					</div>
-                    <button type="submit" onclick="checkPasswordMatch()" class="btn btn-primary btn-block">Sign Up</button>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="pass2" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must contain at least 8 characters with at least one uppercase letter, one lowercase letter, one digit, and one special character." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
                 </form>
-                <p class="mt-3 text-center">Already have an account? <a href="#">Log in</a></p>
+                <p class="mt-3 text-center">Already have an account? <a href="Student_login.html">Log in</a></p>
             </div>
         </div>
        <p>
 
-
        </p>
     </div>
 
-    <script>
+	<script>
         function checkPasswordMatch() {
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("confirmPassword").value;
@@ -122,9 +120,8 @@
             }
 
             return true; // Allow form submission
-        }
-    </script>
-
+        }
+    </script>
 
     <!-- Link to Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -177,32 +174,24 @@
 						<div class="row links-wrap">
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									
+									<li><a href="about.html">About us</a></li>
 								</ul>
 							</div>
 
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Clubs</a></li>
-									
+									<li><a href="contact.html">Support</a></li>
 								</ul>
 							</div>
 
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">Admin Login</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
+									<li><a href="login.html">Admin Login</a></li>
 							</div>
 
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									
-									<li><a href="#">Volunteer</a></li>
-									<li><a href="#">Connect</a></li>
+									<li><a href="Student_login.html">Student Login</a></li>
 								</ul>
 							</div>
 						</div>
@@ -213,7 +202,7 @@
 				<div class="border-top copyright">
 					<div class="row pt-4">
 						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a>UniVibe</a>
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a>UniVibe</a> 
             </p>
 						</div>
 
@@ -230,7 +219,6 @@
 			</div>
 		</footer>
 		<!-- End Footer Section -->	
-
 
 </body>
 </html>
