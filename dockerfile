@@ -2,9 +2,13 @@
 FROM php:apache
 
 # Install MySQL extension for PHP
-RUN docker-php-ext-install mysqli pdo_mysql
+RUN apt-get update && \
+    apt-get install -y libpq-dev && \
+    docker-php-ext-install pdo pdo_mysql
 
-# Create and set the working directory
+# Other installations or configurations go here
+
+# Set the working directory
 WORKDIR /var/www/html
 
 # Copy the content of your project into the container
