@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$con = mysqli_connect('mysql-container', 'root', '');
+$con = mysqli_connect('localhost', 'root', '');
 
 if (!$con) {
     die('Not connected to server');
@@ -70,7 +70,7 @@ if (!$result) {
                 <p>Number of Participants :<?php echo $row['noofparticipants'] ?></p>
                 <p><?php echo $row['venue'] ?></p>
                 <p><?php echo $row['event_date']?>, <?php echo $row['event_time'] ?></p>
-                <a href="register.html" class="button">Register</a>
+                <a href="register.php" class="button">Register</a>
             </div>
         </div>
         <?php

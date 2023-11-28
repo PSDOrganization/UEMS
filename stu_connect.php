@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$con=mysqli_connect('mysql-container','root','');
+$con=mysqli_connect('localhost','root','');
 
    if(!$con)
    {

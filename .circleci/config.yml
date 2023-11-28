@@ -1,23 +1,18 @@
 version: 2.1
-
+ 
 jobs:
   build:
     docker:
       - image: circleci/node:16
-
+ 
     steps:
       - checkout
-
-      # Import GPG keys
-      - run:
-          name: Import GPG keys
-          command: gpg --import gpg-keys.txt
-
+ 
       # Install dependencies
       - run:
           name: Install Node.js dependencies
           command: npm install
-
+ 
       # Run tests
       - run:
           name: Run tests
@@ -27,6 +22,17 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
 
+      # Start MySQL container
+      - run:
+          name: Start MySQL container
+          command: |
+            docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=uems -p 3306:3306 mysql:latest
+
+      # Wait for MySQL to be ready
+      - run:
+          name: Wait for MySQL
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
       # Build Docker image upon successful tests
       - run:
           name: Build Docker image
@@ -34,7 +40,7 @@ jobs:
             docker build -t $DOCKERHUB_USERNAME/uems-image:latest .
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
             docker push $DOCKERHUB_USERNAME/uems-image:latest
-
+ 
 workflows:
   version: 2
   test:

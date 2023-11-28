@@ -77,7 +77,7 @@ class PasswordValidationDecorator
 }
 
 // Instantiate the Database class
-$db = new Database('mysql-container', 'root', '', 'uems');
+$db = new Database('localhost', 'root', '', 'uems');
 
 // Instantiate the PasswordChange class
 $passwordChange = new PasswordChange($db);

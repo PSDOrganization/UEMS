@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$servername = "mysql-container";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "uems";

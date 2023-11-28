@@ -91,7 +91,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
 
             <?php
 
-                $connection = mysqli_connect('mysql-container', 'root', '', 'uems');
+                $connection = mysqli_connect('localhost', 'root', '', 'uems');
                 if (!$connection) {
                     die('Could not connect to MySQL: ' . mysqli_connect_error());
                 }
@@ -105,7 +105,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                     exit();
                 }
 
-                $con = mysqli_connect('mysql-container', 'root', '', 'uems');
+                $con = mysqli_connect('localhost', 'root', '', 'uems');
                 if (!$con) {
                     die('Could not connect to MySQL: ' . mysqli_connect_error());
                 }
