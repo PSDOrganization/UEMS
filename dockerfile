@@ -7,10 +7,12 @@ RUN apt-get update && apt-get install -y \
     php-mysql \
     php-zip \
     php-gd \
+    php-dev \
+    mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install mysqli pdo_mysql zip
+RUN pecl install zip && docker-php-ext-enable zip
 
 # Copy the content of your project into the container
 COPY . /var/www/html
