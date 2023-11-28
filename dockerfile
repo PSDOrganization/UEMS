@@ -1,18 +1,13 @@
-# Use the official PHP with Apache image
-FROM php:apache
+FROM debian:bullseye-slim
 
-# Install system dependencies
+# Install PHP with Apache and required extensions
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libzip-dev \
-    unzip \
+    apache2 \
+    libapache2-mod-php \
+    php-mysql \
+    php-zip \
+    php-gd \
     && rm -rf /var/lib/apt/lists/*
-
-# Install GPG keys for Debian repositories
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg
-RUN gpg --recv-keys --keyserver keyserver.ubuntu.com 0E98404D386FA1D9 6ED0E7B82643E131 F8D2585B8783D481 54404762BBB6E853 BDE6D2B9216EC7A8
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo_mysql zip
