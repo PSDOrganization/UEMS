@@ -37,10 +37,10 @@ $stmt->bind_param("ssss", $fullname, $bannerid, $emailid, $eventid);
 
 if ($stmt->execute()) {
     // Registration successful, redirect to signup.html with a success message
-    header("Location: Student_dash.html?success=Registration%20is%20successful");
+    header("Location: Student_dash.php?success=Registration%20is%20successful");
 } else {
     // Registration failed, redirect to signup.html with an error message
-    header("Location: register.html?error=Registration%20failed");
+    header("Location: register.php?error=Registration%20failed");
 }
 ob_end_flush();
 ?>
