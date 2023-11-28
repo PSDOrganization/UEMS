@@ -1,3 +1,16 @@
+<?php
+ob_start();
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
+    // Redirect to the login page or show an access denied message
+    echo 'login to view admin dashboard';
+    header("Location: login.html");
+    exit();
+}
+if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +71,7 @@
 					<li >
 						<a class="nav-link" href="index.html">Home</a>
 					</li>
-					<li><a class="nav-link" href="admin.php">Admin Dashboard</a></li>
+					<li><a class="nav-link" href="admin.html">Admin Dashboard</a></li>
 			
 					<li class="nav-item active"><a class="nav-link" href="explore_events.php">Explore events</a></li>
 					<li><a class="nav-link" href="Student_login.html">Student Login</a></li>
@@ -76,22 +89,22 @@
 			<th style="width:auto;"> <b>Banner ID </b></th>
 			<th style="width:auto;"> <b>Full Name </b></th>
             <th style="width:auto;"> <b>Event Id </b></th>
-            
+            <th style="width:auto;"> <b>Event name</th>
 			
 		
         </tr>
 
         <?php
         // Connect to MySQL
-        $con = mysqli_connect('localhost', 'root', '', 'uems');
+        $con = mysqli_connect('mysql-container', 'root', '', 'uems');
         if (!$con) {
             die('Could not connect to MySQL: ' . mysqli_connect_error());
         }
 
         // Execute the SQL query
-        $query = "SELECT participants.bannerid, participants.fullname, participants.eventid
-        FROM participants";
-        //JOIN event ON participants.eventid = event.eventid";
+        $query = "SELECT participants.bannerid, participants.fullname, participants.eventid, event.eventname
+        FROM participants
+        JOIN event ON participants.eventid = event.eventid";
 
         $result = mysqli_query($con, $query);
 
@@ -105,7 +118,7 @@
 			echo "<td style='color: black; font-weight: bold;'>" . $row['bannerid'] . "</td>";
 			echo "<td style='color: black; font-weight: bold;'>" . $row['fullname'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['eventid'] . "</td>";
-           // echo "<td style='color: black; font-weight: bold;'>" . $row['eventname'] . "</td>";
+            echo "<td style='color: black; font-weight: bold;'>" . $row['eventname'] . "</td>";
 	
             echo "</tr>";
         }
@@ -228,3 +241,7 @@
 		<script src="js/custom.js"></script>
 </body>
 </html>
+<?php
+}
+ob_end_flush();
+?>

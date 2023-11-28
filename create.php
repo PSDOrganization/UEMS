@@ -1,6 +1,6 @@
 <?php
-
-$con=mysqli_connect('localhost','root','');
+ob_start();
+$con=mysqli_connect('mysql-container','root','');
 
    if(!$con)
    {
@@ -70,12 +70,12 @@ $stmt->bind_param('ssssssss', $eventname, $noofparticipants, $event_time, $event
 
 if ($stmt->execute()) {
   // Registration successful, redirect to signup.html with a success message
-  header("Location: admin.html?success=Registration%20is%20successful");
+  header("Location: Admin.php?success=Registration%20is%20successful");
 } else {
   // Registration failed, redirect to signup.html with an error message
-  header("Location: create.html?error=Registration%20failed");
+  header("Location: create_event.php?error=Registration%20failed");
 }
-
+ob_end_flush();
 ?>
     
     

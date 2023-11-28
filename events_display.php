@@ -1,5 +1,6 @@
 <?php
-$con = mysqli_connect('localhost', 'root', '');
+ob_start();
+$con = mysqli_connect('mysql-container', 'root', '');
 
 if (!$con) {
     die('Not connected to server');
@@ -42,8 +43,8 @@ if (!$result) {
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li><a class="nav-link" href="about.html">About us</a></li>
-                    <li class="active"><a class="nav-link" href="login.html">Student Login</a></li>
-                    <li><a class="nav-link" href="Student_login.html">Admin Login</a></li>
+                    <li class="active"><a class="nav-link" href="Student_dash.php">Student Login</a></li>
+                    <li><a class="nav-link" href="Admin.php">Admin Login</a></li>
                     <li><a class="nav-link" href="contact.html">Contact us</a></li>
                 </ul>
             </div>
@@ -64,12 +65,12 @@ if (!$result) {
             ?>
             <img src="<?php echo $targetPath; ?>" alt="Uploaded Image">
             <div class="event-details">
-                <h2><?php echo $row['eventname'] ?></h2>
+                <h2><?php echo '#'; echo $row['eventid']; echo " "; echo $row['eventname'] ?></h2>
                 <p><?php echo $row['eventdescription']?></p>
                 <p>Number of Participants :<?php echo $row['noofparticipants'] ?></p>
                 <p><?php echo $row['venue'] ?></p>
                 <p><?php echo $row['event_date']?>, <?php echo $row['event_time'] ?></p>
-                <a href="Student_login.html" class="button">Register</a>
+                <a href="register.html" class="button">Register</a>
             </div>
         </div>
         <?php
@@ -81,4 +82,5 @@ if (!$result) {
 
 <?php
 mysqli_close($con);
+ob_end_flush();
 ?>

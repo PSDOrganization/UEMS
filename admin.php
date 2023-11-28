@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 // Check if the user is logged in
@@ -8,7 +9,8 @@ if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
     header("Location: login.html");
     exit();
 }
-if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
+if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
+
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
@@ -24,23 +26,23 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
       <div class="container">
         <nav>
           <ul>
-            <li><a href="Admin1.php" class="logo">
+            <li><a href="Admin.php" class="logo">
               <img src="images/plus.png" alt="">
               <span class="nav-item">DashBoard</span>
             </a></li>
-            <li><a href="index.html">
+            <li><a href="Admin.php">
               <i class="fas fa-home"></i>
               <span class="nav-item">Home</span>
             </a></li>
-            <li><a href="create.html">
+            <li><a href="create_event.php">
                 <i class="fas fa-calendar-plus"></i>
               <span class="nav-item">Create Event</span>
             </a></li>
-            <li><a href="updeve.html">
+            <li><a href="update_event.php">
               <i class="fas fa-wallet"></i>
               <span class="nav-item">Update Event</span>
             </a></li>
-            <li><a href="deleve.html">
+            <li><a href="delete_event.php">
                 <i class="fas fa-trash-alt"></i>
               <span class="nav-item">Delete Event</span>
             </a></li>
@@ -56,7 +58,7 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
               <i class="fas fa-question-circle"></i>
               <span class="nav-item">Contact Us</span>
             </a></li>
-            <li><a href="login.html" class="logout">
+            <li><a href="logout.php" class="logout">
               <i class="fas fa-sign-out-alt"></i>
               <span class="nav-item">Log out</span>
             </a></li>
@@ -66,27 +68,27 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
         <section class="main">
           <div class="main-top">
             <h1>Event Management</h1>
-            <i class="fas fa-user-cog"><a href="login.html" class="logout"></a></i>
+            <i class="fas fa-user-cog"><a href="#" class="logout"></a></i>
           </div>
           <div class="main-skills">
             <div class="card">
               <i class="fas fa-calendar-plus"></i>
               <h3>Create Events</h3>
               <p>Publish events !</p>
-              <a href="create.html"><button>Create Event</button></a>
+              <a href="create_event.php"><button>Create Event</button></a>
               
             </div>
             <div class="card">
               <i class="fas fa-wallet"></i>
               <h3>Update Event</h3>
               <p>Update the event details!!</p>
-              <a href="updeve.html"><button>Update Event</button></a>
+              <a href="update_event.php"><button>Update Event</button></a>
             </div>
             <div class="card">
               <i class="fas fa-trash-alt"></i>
               <h3>Delete Event</h3>
               <p>Delete events!!</p>
-              <a href="deleve.html"><button>Delete Event</button></a>
+              <a href="delete_event.php"><button>Delete Event</button></a>
             </div>
            
           </div>
@@ -121,4 +123,5 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
 </span>
 <?php
 }
+ob_end_flush();
 ?>

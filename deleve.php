@@ -119,7 +119,7 @@ class EventManager implements EventManagerDecorator
 }
 
 // Instantiate the Database class
-$db = new Database('localhost', 'root', '', 'uems');
+$db = new Database('mysql-container', 'root', '', 'uems');
 
 // Instantiate the EventManager class with LoggingDecorator
 $eventManager = new LoggingDecorator(new EventManager($db));

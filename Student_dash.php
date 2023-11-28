@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 // Check if the user is logged in
@@ -24,7 +25,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
       <div class="container">
         <nav>
           <ul>
-            <li><a href="Student_Dashboard.html" class="logo">
+            <li><a href="Student_dash.php" class="logo">
               <img src="images/plus.png" alt="">
               <span class="nav-item">DashBoard</span>
             </a></li>
@@ -46,7 +47,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
               <i class="fas fa-question-circle"></i>
               <span class="nav-item">Contact Us</span>
             </a></li>
-            <li><a href="Student_login.html" class="logout">
+            <li><a href="logout.php" class="logout">
               <i class="fas fa-sign-out-alt"></i>
               <span class="nav-item">Log out</span>
             </a></li>
@@ -56,7 +57,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
         <section class="main">
           <div class="main-top">
             <h1>Student Dashboard</h1>
-            <i class="fas fa-user-cog"><a href="Student_login.html" class="logout"></a></i>
+            <i class="fas fa-user-cog"><a href="logout.php" class="logout"></a></i>
           </div>
           <div class="main-skills">
             <div class="card">
@@ -101,4 +102,5 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
     </html></span>
 <?php
 }
+ob_end_flush();
 ?>

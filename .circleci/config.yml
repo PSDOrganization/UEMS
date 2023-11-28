@@ -22,6 +22,18 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
 
+      # Start MySQL container
+      - run:
+          name: Start MySQL container
+          command: |
+            docker network create my-network
+            docker run -d --name mysql-container --network my-network -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_DATABASE=uems -p 3306:3306 mysql:latest
+
+      # Wait for MySQL to be ready
+      - run:
+          name: Wait for MySQL
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
       # Build Docker image upon successful tests
       - run:
           name: Build Docker image

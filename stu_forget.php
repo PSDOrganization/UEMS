@@ -1,10 +1,11 @@
 <?php
+ob_start();
 $bannerid=$_POST['bannerid'];
 $securityquestion1=$_POST['securityquestion1'];
 $securityquestion2=$_POST['securityquestion2'];
 $securityquestion3=$_POST['securityquestion3'];
 
-$connection = mysqli_connect('localhost','root','','uems');
+$connection = mysqli_connect('mysql-container','root','','uems');
 if($connection->connect_error)
 {
 	die("database connection failed: " . $connection->connect_error);
@@ -24,6 +25,9 @@ $query="SELECT  bannerid,securityquestion1,securityquestion2,securityquestion3 F
         exit(header("refresh:1;url=stu_change.html"));
 	}
 	else
+	{
 		echo "Invalid Details";
         exit(header("refresh:1;url=forgot_student.html"));
+	}
+ob_end_flush();
 ?>
