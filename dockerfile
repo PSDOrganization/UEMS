@@ -1,30 +1,23 @@
-FROM debian:bullseye-slim
+# Use the official PHP with Apache image
+FROM php:apache
 
-# Install PHP with Apache and required extensions
-RUN apt-get update && apt-get install -y \
-    apache2 \
-    libapache2-mod-php \
-    php-mysql \
-    php-zip \
-    php-gd \
-    php-dev \
-    mysql-client \
-    && rm -rf /var/lib/apt/lists/*
+# Install MySQL extension for PHP
+RUN docker-php-ext-install mysqli pdo_mysql
 
-# Install PHP extensions
-RUN pecl install zip && docker-php-ext-enable zip
+# Create and set the working directory
+WORKDIR /var/www/html
 
 # Copy the content of your project into the container
-COPY . /var/www/html
+COPY . .
 
 # Copy the entry script into the container
-COPY entry.sh /var/www/html/entry.sh
+COPY entry.sh .
 
 # Set executable permissions for the entry script
-RUN chmod +x /var/www/html/entry.sh
+RUN chmod +x entry.sh
 
 # Expose port 80
 EXPOSE 80
 
 # Set the entry script as the default command
-CMD ["/var/www/html/entry.sh"]
+CMD ["./entry.sh"]
