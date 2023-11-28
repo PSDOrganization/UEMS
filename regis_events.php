@@ -71,7 +71,7 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                         <li><a class="nav-link" href="Student_dash.html">Student Dashboard</a></li>
                 
                         <li class="nav-item active"><a class="nav-link" href="regis_events.php">Registered Events</a></li>
-                        <li><a class="nav-link" href="Student_login.html">Student Login</a></li>
+                        <li><a class="nav-link" href="Student_login.php">Student Login</a></li>
                         <li><a class="nav-link" href="contact.html">Contact us</a></li>
                     </ul>
 
