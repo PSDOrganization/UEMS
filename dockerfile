@@ -1,12 +1,12 @@
 # Use the official PHP with Apache image
 FROM php:apache
 
-# Install MySQL extension for PHP
-RUN docker-php-ext-install mysqli pdo_mysql
+# Install dependencies required for mysqli and pdo_mysql extensions
+RUN apt-get update \
+    && apt-get install -y libpq-dev libzip-dev \
+    && docker-php-ext-install mysqli pdo_mysql
 
-# Install MySQL client (example, adjust as needed)
-RUN apt-get update && apt-get install -y mysql-client
-
+# Create directory for the project
 RUN mkdir -p /var/www/html
 
 # Copy the content of your project into the container
