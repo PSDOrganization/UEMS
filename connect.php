@@ -1,7 +1,7 @@
 <?php
 ob_start();
 // Create a new MySQLi object in the object-oriented style
-$con = new mysqli('localhost', 'root', '');
+$con = new mysqli('mysql-container', 'root', '');
 
 // Check the connection
 if ($con->connect_error) {
