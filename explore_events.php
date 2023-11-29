@@ -110,7 +110,7 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
 
         <?php
         // Connect to MySQL
-        $con = mysqli_connect('localhost', 'root', '', 'uems');
+        $con = mysqli_connect('mysql-container', 'root', '', 'uems');
         if (!$con) {
             die('Could not connect to MySQL: ' . mysqli_connect_error());
         }
