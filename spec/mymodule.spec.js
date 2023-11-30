@@ -175,6 +175,53 @@ describe('Signup page', function () {
   });
 });
 
+describe('Change Password Page', () => {
+  let container;
+
+  beforeEach(() => {
+    const dom = new JSDOM(`
+      <!DOCTYPE html>
+      <html lang="en">
+        <body>
+        </body>
+      </html>
+    `);
+    global.document = dom.window.document;
+
+    container = document.createElement('div');
+    container.innerHTML = `
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 offset-md-4 login-container">
+            <h2 class="text-center mb-4">Change Password</h2>
+            <form action="change.php" method="POST" onsubmit="return checkPasswordMatch()">
+              <!-- Other form elements are omitted for simplicity -->
+              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+            <p class="mt-3 text-center"><a href="login.html">Login</a></p>
+            <p class="mt-3 text-center">Don't have an account? <a href="Student_Signup.html">Sign up</a></p>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  afterEach(() => {
+    container = null;
+  });
+
+  it('should have a form with the correct action', () => {
+    document.body.appendChild(container);
+
+    const form = document.querySelector('form');
+
+    expect(form).toBeTruthy();
+    expect(form.getAttribute('action')).toBe('change.php');
+
+    document.body.removeChild(container);
+  });
+});
+
 
 
 
