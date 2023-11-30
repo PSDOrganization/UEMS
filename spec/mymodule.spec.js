@@ -3,7 +3,6 @@
 const jsdom = require('jsdom');
 const { JSDOM } = require('jsdom');
 
-
 describe('HTML Content Test', () => {
   // Create a variable to hold the JSDOM environment
   let dom;
