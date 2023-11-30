@@ -1,15 +1,15 @@
 <?php
-ob_start();
-session_start();
+//ob_start();
+//session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
+//if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
     // Redirect to the login page or show an access denied message
-    echo 'login to view admin dashboard';
-    header("Location: login.html");
-    exit();
-}
-if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
+//    echo 'login to view admin dashboard';
+//    header("Location: login.html");
+//    exit();
+//}
+//if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -122,6 +122,6 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
   </html>
 </span>
 <?php
-}
-ob_end_flush();
+//}
+//ob_end_flush();
 ?>
