@@ -49,7 +49,7 @@ class EventManager
 }
  
 // Instantiate the Database class
-$db = new Database('localhost', 'root', '', 'uems');
+$db = new Database('lmysql-container', 'root', '', 'uems');
  
 // Instantiate the EventManager class
 $eventManager = new EventManager($db);
