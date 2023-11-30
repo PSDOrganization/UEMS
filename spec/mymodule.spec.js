@@ -140,8 +140,6 @@ describe('Login page', function () {
   });
 });
 
-const { JSDOM } = require('jsdom');
-
 describe('Signup page', function () {
   let container;
 
