@@ -4,7 +4,7 @@ $emailid=$_POST['emailid'];
 $pass1=$_POST['pass1'];
 	
 
-$connection = mysqli_connect('localhost','root','','uems');
+$connection = mysqli_connect('mysql-container','root','','uems');
 if(!$connection)
 {
 	die("database connection failed".mysqli_error($connection));
