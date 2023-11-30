@@ -117,7 +117,7 @@ class ResultSetDecorator implements Countable
 }
 
 // Instantiate the Database class
-$db = new Database('localhost', 'root', '', 'uems');
+$db = new Database('mysql-container', 'root', '', 'uems');
 
 // Instantiate the AdminAuthentication class
 $adminAuthentication = new AdminAuthentication($db);
