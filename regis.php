@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$con = mysqli_connect('localhost', 'root', '');
+$con = mysqli_connect('mysql-container', 'root', '');
 
 if (!$con) {
     echo 'Not connected to server';
