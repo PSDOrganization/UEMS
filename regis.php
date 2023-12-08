@@ -16,7 +16,8 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS participants (
     fullname VARCHAR(255) ,
     bannerid VARCHAR(255) NOT NULL,
     emailid VARCHAR(255) NOT NULL,
-    eventid VARCHAR(255) NOT NULL
+    eventid VARCHAR(255) NOT NULL,
+    is_volunteer TINYINT(1) DEFAULT 0
 )";
 
 
@@ -31,9 +32,12 @@ $bannerid = $_POST['bannerid'];
 $emailid = $_POST['emailid'];
 $eventid = $_POST['eventid'];
 
-$sql = "INSERT INTO participants (fullname, bannerid, emailid, eventid) VALUES (?, ?, ?, ?)";
+// Check if the 'volunteer' checkbox is checked
+$is_volunteer = isset($_POST['volunteer']) ? 1 : 0;
+
+$sql = "INSERT INTO participants (fullname, bannerid, emailid, eventid, is_volunteer) VALUES (?, ?, ?, ?, ?)";
 $stmt = $con->prepare($sql);
-$stmt->bind_param("ssss", $fullname, $bannerid, $emailid, $eventid);
+$stmt->bind_param("sssss", $fullname, $bannerid, $emailid, $eventid, $is_volunteer);
 
 if ($stmt->execute()) {
     // Registration successful, redirect to signup.html with a success message
