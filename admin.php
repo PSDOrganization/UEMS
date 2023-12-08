@@ -1,15 +1,15 @@
 <?php
-//ob_start();
-//session_start();
+ob_start();
+session_start();
 
 // Check if the user is logged in
-//if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
+if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
     // Redirect to the login page or show an access denied message
-//    echo 'login to view admin dashboard';
-//    header("Location: login.html");
-//    exit();
-//}
-//if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
+    echo 'login to view admin dashboard';
+    header("Location: login.html");
+    exit();
+}
+if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -53,6 +53,10 @@
             <li><a href="view_parti.php">
                 <i class="fas fa-users"></i>
               <span class="nav-item">View Paricipants</span>
+            </a></li>
+            <li><a href="view_parti.php">
+                <i class="fas fa-users"></i>
+              <span class="nav-item">View Volunteers</span>
             </a></li>
             <li><a href="contact.html">
               <i class="fas fa-question-circle"></i>
@@ -112,7 +116,12 @@
                   <p>Partcicpants of events created by you</p>
                   <a href="view_parti.php"><button>View</button></a>
                 </div>
-                
+
+                <div class="box">
+                  <h3>Views Volunteers</h3>
+                  <p>Volunteers who have registered to help in Organizing the events</p>
+                  <a href="View_Volunteers.php"><button>View</button></a>
+                </div>
               </div>
             </div>
           </section>
@@ -122,6 +131,6 @@
   </html>
 </span>
 <?php
-//}
-//ob_end_flush();
+}
+ob_end_flush();
 ?>
