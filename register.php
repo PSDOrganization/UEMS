@@ -77,20 +77,24 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                                 <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" name="fullname" required>
                             </div>
                             
-                        <div class="form-group">
-                            <label for="employeeID">Banner ID</label>
-                            <input type="text" class="form-control" id="employeeID" placeholder="Enter your Banner ID" pattern="^001.{6}$" title="Please enter a code that starts with '001' and has 6 characters." name="bannerid"  required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Collage Email ID</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email address" name="emailid" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="eventid">Event Id</label>
-                            <input type="text" class="form-control" id="eventid" placeholder="Enter the event id" name="eventid" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+							<div class="form-group">
+								<label for="employeeID">Banner ID</label>
+								<input type="text" class="form-control" id="employeeID" placeholder="Enter your Banner ID" pattern="^001.{6}$" title="Please enter a code that starts with '001' and has 6 characters." name="bannerid"  required>
+							</div>
+							<div class="form-group">
+								<label for="email">Collage Email ID</label>
+								<input type="email" class="form-control" id="email" placeholder="Enter your email address" name="emailid" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="form-check-label"></label>
+								<input type="checkbox" class="form-check-input" name="volunteer"> Want to be a Volunteer
+							</div>
+							<div class="form-group">
+								<label for="eventid">Event Id</label>
+								<input type="text" class="form-control" id="eventid" placeholder="Enter the event id" name="eventid" required>
+							</div>
+                        	<button type="submit" class="btn btn-primary btn-block">Register</button>
+						</div>
                     </form>
                     
                 </div>
