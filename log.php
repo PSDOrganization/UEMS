@@ -51,7 +51,7 @@ class AdminAuthentication implements AuthenticationStrategy
             session_start();
             $_SESSION['Alogged_in'] = true;
             // Redirect to a dashboard or home page
-            header("Location: admin.html");
+            header("Location: Admin.php");
             exit();
             //exit(header("refresh:1;url=admin.html"));
         } else {

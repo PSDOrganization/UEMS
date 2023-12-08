@@ -9,7 +9,7 @@ if (!isset($_SESSION['Alogged_in']) || $_SESSION['Alogged_in'] !== true) {
     header("Location: login.html");
     exit();
 }
-if (isset($_SESSION["Alogged_in"]) || $_SESSION["Aogged_in"] === true) {
+if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 ?>
 <!DOCTYPE html>
 <html>
