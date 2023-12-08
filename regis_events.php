@@ -68,10 +68,10 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                         <li >
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
-                        <li><a class="nav-link" href="Student_dash.html">Student Dashboard</a></li>
+                        <li><a class="nav-link" href="Student_dash.php">Student Dashboard</a></li>
                 
                         <li class="nav-item active"><a class="nav-link" href="regis_events.php">Registered Events</a></li>
-                        <li><a class="nav-link" href="Student_login.php">Student Login</a></li>
+                        <li><a class="nav-link" href="Student_login.html">Student Login</a></li>
                         <li><a class="nav-link" href="contact.html">Contact us</a></li>
                     </ul>
 
@@ -84,9 +84,12 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
 
         <table>
             <tr>
-                <th style="width:auto;"> <b>Banner ID </b></th>
                 <th style="width:auto;"> <b>Event Id </b></th>
-                <th style="width:auto;"> <b>Event name</th>		
+                <th style="width:auto;"> <b>Event name</b></th>	
+                <th style="width:auto;"> <b>Volunteer</b></th>
+                <th style="width:auto;"> <b>Venue </b></th>	
+                <th style="width:auto;"> <b>Date </b></th>
+                <th style="width:auto;"> <b>Time </b></th>
             </tr>
 
             <?php
@@ -105,13 +108,13 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                     exit();
                 }
 
-                $con = mysqli_connect('localhost', 'root', '', 'uems');
+                $con = mysqli_connect('mysql-container', 'root', '', 'uems');
                 if (!$con) {
                     die('Could not connect to MySQL: ' . mysqli_connect_error());
                 }
 
                 // Execute the SQL query
-                $query = "SELECT student.bannerid, participants.eventid, event.eventname
+                $query = "SELECT participants.eventid, event.eventname, participants.is_volunteer, event.venue, event.event_date, event.event_time
                 FROM student
                 INNER JOIN participants ON student.bannerid = participants.bannerid
                 INNER JOIN event ON participants.eventid = event.eventid
@@ -126,9 +129,12 @@ if (isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] === true) {
                 // Fetch and display the events
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
-                    echo "<td style='color: black; font-weight: bold;'>" . $row['bannerid'] . "</td>";
                     echo "<td style='color: black; font-weight: bold;'>" . $row['eventid'] . "</td>";
                     echo "<td style='color: black; font-weight: bold;'>" . $row['eventname'] . "</td>";
+                    echo "<td style='color: black; font-weight: bold;'>" . $row['is_volunteer'] . "</td>";
+                    echo "<td style='color: black; font-weight: bold;'>" . $row['venue'] . "</td>";
+                    echo "<td style='color: black; font-weight: bold;'>" . $row['event_date'] . "</td>";
+                    echo "<td style='color: black; font-weight: bold;'>" . $row['event_time'] . "</td>";
                     echo "</tr>";
                 }
 
