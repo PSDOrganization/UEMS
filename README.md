@@ -20,6 +20,8 @@ Method 1: Local Installation using XAMPP
 
 6.The project will now be accessible and operational on your local system.
 
+7. User first need to signup as Admin, to create a database.
+
 By following these steps, you can successfully set up and run the project in your local development environment.
 
 Method 2: Running the Project via Docker
