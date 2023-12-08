@@ -71,7 +71,7 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 					<li >
 						<a class="nav-link" href="index.html">Home</a>
 					</li>
-					<li><a class="nav-link" href="admin.php">Admin Dashboard</a></li>
+					<li><a class="nav-link" href="Admin.php">Admin Dashboard</a></li>
 			
 					<li class="nav-item active"><a class="nav-link" href="explore_events.php">Explore events</a></li>
 					<li><a class="nav-link" href="Student_login.html">Student Login</a></li>
