@@ -111,7 +111,7 @@ class EventManager implements EventManagerDecorator
 
         if ($resultEvent) {
             echo "Event and associated participants deleted successfully";
-            exit(header("refresh:1;url=admin.php"));
+            exit(header("refresh:1;url=Admin.php"));
         } else {
             die("Error deleting event: " . mysqli_error($this->db->connection));
         }
