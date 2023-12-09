@@ -8,13 +8,13 @@ To initiate the setup of a development environment for this project, follow the 
 
 Method 1: Local Installation using XAMPP
 
-1.Download this repository to your local system.
+1.Download Source Code.zip file from repository to your local system and unzip the zip file.
 
 2.Install XAMPP on your machine.
 
 3.After the installation is complete, launch XAMPP. Start both the Apache and MySQL servers from within the XAMPP application.
 
-4.Once the servers are running, download the project repository and copy the entire folder into the following directory on your local machine: C:\xampp\htdocs\.
+4.Once the servers are running, copy the unzipped folder into the following directory on your local machine: C:\xampp\htdocs\.
 
 5.Open your web browser and enter the following address: localhost/folder-name (replace "folder-name" with the name of the folder you downloaded from the repository).
 
