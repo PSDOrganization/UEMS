@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 // Database class for database connection and interaction
 class Database
 {
@@ -48,7 +48,12 @@ class AdminAuthentication implements AuthenticationStrategy
 
         if ($count > 0) {
             echo "Admin login successful";
-            exit(header("refresh:1;url=admin.html"));
+            session_start();
+            $_SESSION['Alogged_in'] = true;
+            // Redirect to a dashboard or home page
+            header("Location: Admin.php");
+            exit();
+            //exit(header("refresh:1;url=admin.html"));
         } else {
             echo "Invalid admin login";
             exit(header("refresh:1;url=login.html"));
@@ -112,7 +117,7 @@ class ResultSetDecorator implements Countable
 }
 
 // Instantiate the Database class
-$db = new Database('localhost', 'root', '', 'uems');
+$db = new Database('mysql-container', 'root', '', 'uems');
 
 // Instantiate the AdminAuthentication class
 $adminAuthentication = new AdminAuthentication($db);
@@ -136,4 +141,5 @@ $resultCount = count($decoratedResultSet);
 
 // Close the database connection
 $db->closeConnection();
+ob_end_flush();
 ?>

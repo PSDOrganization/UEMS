@@ -52,60 +52,45 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
    			 background-color: darkblue;
 			 color: yellow;
 		}
-		</style>
-	    
-
-
-
-
+	</style>
+</head>
 <body>
 
+	<!-- Start Header/Navigation -->
+	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="uems navigation bar">
 
+		<div class="container">
+			<a class="navbar-brand" href="index.html">UniVibe<span>.</span></a>
 
-    
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsuems" aria-controls="navbarsuems" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-<!-- Start Header/Navigation -->
-<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="uems navigation bar">
+			<div class="collapse navbar-collapse" id="navbarsuems">
+				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+					<li >
+						<a class="nav-link" href="index.html">Home</a>
+					</li>
+					<li><a class="nav-link" href="admin.php">Admin Dashboard</a></li>
+			
+					<li class="nav-item active"><a class="nav-link" href="explore_events.php">Explore events</a></li>
+					<li><a class="nav-link" href="Student_login.html">Student Login</a></li>
+					<li><a class="nav-link" href="contact.html">Contact us</a></li>
+				</ul>
 
-    <div class="container">
-        <a class="navbar-brand" href="index.html">UniVibe<span>.</span></a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsuems" aria-controls="navbarsuems" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsuems">
-            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                <li >
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li><a class="nav-link" href="Admin.php">Admin Dashboard</a></li>
-        
-                <li class="nav-item active"><a class="nav-link" href="explore_events.php">Explore events</a></li>
-                <li><a class="nav-link" href="Student_dash.php">Student Login</a></li>
-                <li><a class="nav-link" href="contact.html">Contact us</a></li>
-            </ul>
-
-        
-        </div>
-    </div>
-        
-</nav>
-<h1>Events List</h1>
-
-
-
+			
+			</div>
+		</div>		
+	</nav>
+	<h1>Volunteers List</h1>
 
     <table>
         <tr>
-			<th style="width:auto;"> <b>Event ID </b></th>
-            <th style="width:auto;"> <b>Event Name </b></th>
-            <th style="width:auto;"> <b>No. of Participants</th>
-			<th style="width:auto;"> <b>Event Description</th>
-            <th style="width:auto;">Event Time</th>
-            <th style="width:auto;">Event Date</th>
-            <th style="width:auto;">Venue</th>
-		
+			<th style="width:auto;"> <b>Banner ID </b></th>
+			<th style="width:auto;"> <b>Full Name </b></th>
+			<th style="width:auto;"> <b>Email ID </b></th>
+            <th style="width:auto;"> <b>Event Id </b></th>
+            <th style="width:auto;"> <b>Event name</th>
         </tr>
 
         <?php
@@ -116,7 +101,10 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
         }
 
         // Execute the SQL query
-        $query = "SELECT eventid, eventname, noofparticipants, eventdescription, event_time, event_date, venue FROM event";
+        $query = "SELECT participants.bannerid, participants.fullname, participants.emailid, participants.eventid, event.eventname
+        FROM participants
+        JOIN event ON participants.eventid = event.eventid WHERE participants.is_volunteer = 1";
+
         $result = mysqli_query($con, $query);
 
         if (!$result) {
@@ -126,14 +114,11 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
         // Fetch and display the events
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-			echo "<td style='color: black; font-weight: bold;'>" . $row['eventid'] . "</td>";
+			echo "<td style='color: black; font-weight: bold;'>" . $row['bannerid'] . "</td>";
+			echo "<td style='color: black; font-weight: bold;'>" . $row['fullname'] . "</td>";
+			echo "<td style='color: black; font-weight: bold;'>" . $row['emailid'] . "</td>";
+            echo "<td style='color: black; font-weight: bold;'>" . $row['eventid'] . "</td>";
             echo "<td style='color: black; font-weight: bold;'>" . $row['eventname'] . "</td>";
-            echo "<td style='color: black; font-weight: bold;'>" . $row['noofparticipants'] . "</td>";
-			echo "<td style='color: black; font-weight: bold;'>" . $row['eventdescription'] . "</td>";
-            echo "<td style='color: black; font-weight: bold;'>" . $row['event_time'] . "</td>";
-            echo "<td style='color: black; font-weight: bold;'>" . $row['event_date'] . "</td>";
-            echo "<td style='color: black; font-weight: bold;'>" . $row['venue'] . "</td>";
-	
             echo "</tr>";
         }
 
@@ -146,8 +131,8 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 	<br></br>
 	<br></br>
 		
-<!-- Start Footer Section -->
-<footer class="footer-section">
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
 			<div class="container relative">
 
 				<div class="event-img">
@@ -231,7 +216,7 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 				<div class="border-top copyright">
 					<div class="row pt-4">
 						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a>UniVibe.co</a>
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a>UniVibe</a>
             </p>
 						</div>
 
@@ -253,8 +238,7 @@ if (isset($_SESSION["Alogged_in"]) || $_SESSION["Alogged_in"] === true) {
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>
-	</body>
-
+</body>
 </html>
 <?php
 }

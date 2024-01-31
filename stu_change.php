@@ -1,5 +1,6 @@
 <?php
-$servername = "localhost";
+ob_start();
+$servername = "mysql-container";
 $username = "root";
 $password = "";
 $dbname = "uems";
@@ -29,4 +30,5 @@ if (mysqli_query($conn, $sql)) {
 }
 
 mysqli_close($conn);
+ob_end_flush();
 ?>

@@ -1,15 +1,23 @@
 <?php
+ob_start();
+// Create a new MySQLi object in the object-oriented style
+$con = new mysqli('mysql-container', 'root', '');
 
-$con=mysqli_connect('localhost','root','');
-
-   if(!$con)
-   {
-       echo 'Not connected to server';
-   }
-if(!mysqli_select_db($con,'uems'))
-{
-    echo 'database not selected';
+// Check the connection
+if ($con->connect_error) {
+    die('Not connected to server: ' . $con->connect_error);
 }
+
+// Create 'uems' database if it doesn't exist
+if (!$con->query('CREATE DATABASE IF NOT EXISTS uems')) {
+    echo 'Error creating database: ' . $con->error;
+}
+
+// Select the 'uems' database
+if (!$con->select_db('uems')) {
+    echo 'Database not selected: ' . $con->error;
+}
+
 // Check if the 'admin' table exists, and if not, create it
 $createTableSQL = "CREATE TABLE IF NOT EXISTS admin (
     firstname VARCHAR(255) NOT NULL,
@@ -38,7 +46,6 @@ $secques2 = $_POST['securityquestion2'];
 $secques3 = $_POST['securityquestion3'];
 $pass1 = $_POST['pass1'];
 $pass2 = $_POST['pass2'];
- 
 
 $sql = "INSERT INTO admin (firstname, lastname, employeeid, emailid, securityquestion1, securityquestion2, securityquestion3, pass1, pass2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $con->prepare($sql);
@@ -52,6 +59,10 @@ if ($stmt->execute()) {
     header("Location: signup.html?error=Registration%20failed");
 }
 
+// Close the prepared statement
+$stmt->close();
+
+// Close the database connection
+$con->close();
+ob_end_flush();
 ?>
-    
-    

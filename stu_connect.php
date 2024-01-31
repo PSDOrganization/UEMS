@@ -1,6 +1,6 @@
 <?php
-
-$con=mysqli_connect('localhost','root','');
+ob_start();
+$con=mysqli_connect('mysql-container','root','');
 
    if(!$con)
    {
@@ -53,7 +53,7 @@ if ($stmt->execute()) {
     // Registration failed, redirect to signup.html with an error message
     header("Location: signup.html?error=Registration%20failed");
 }
-
+ob_end_flush();
 ?>
     
     

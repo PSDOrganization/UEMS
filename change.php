@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Database class for database connection and interaction
 class Database
 {
@@ -76,7 +77,7 @@ class PasswordValidationDecorator
 }
 
 // Instantiate the Database class
-$db = new Database('localhost', 'root', '', 'uems');
+$db = new Database('mysql-container', 'root', '', 'uems');
 
 // Instantiate the PasswordChange class
 $passwordChange = new PasswordChange($db);
@@ -94,4 +95,5 @@ $passwordDecorator->validatePasswordChange($employeeid, $pass1, $pass2);
 
 // Close the database connection
 $db->closeConnection();
+ob_end_flush();
 ?>
